@@ -1,0 +1,10 @@
+{
+  "name": "TENKEN PRO 店舗点検",
+  "short_name": "TENKEN PRO",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f3f6fa",
+  "theme_color": "#14263d",
+  "lang": "ja",
+  "description": "店舗の清掃・設備点検チェックアプリ"
+}
