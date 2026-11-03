@@ -1,0 +1,11 @@
+rules_version = '2';
+service cloud.firestore {
+ match /databases/{database}/documents {
+  function active(){return request.auth!=null && exists(/databases/$(database)/documents/users/$(request.auth.uid)) && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.active==true;}
+  function admin(){return active() && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role=='admin';}
+  match /users/{uid}{allow read: if active() && (request.auth.uid==uid || admin()); allow write: if false;}
+  match /dailyChecks/{id}{allow read: if active(); allow create,update: if active() && request.resource.data.updatedBy==request.auth.uid && request.resource.data.date==id; allow delete: if admin();}
+  match /reports/{id}{allow read: if active(); allow create: if active() && request.resource.data.createdBy==request.auth.uid && request.resource.data.updatedBy==request.auth.uid; allow update: if active() && request.resource.data.updatedBy==request.auth.uid; allow delete: if admin();}
+  match /settings/{id}{allow read: if active(); allow write: if admin() && request.resource.data.updatedBy==request.auth.uid;}
+ }
+}
