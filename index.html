@@ -61,6 +61,48 @@
       </form>
     </section>
 
+
+    <section class="panel report-panel" id="reportPanel">
+      <div class="section-head compact">
+        <div><p class="eyebrow">INCIDENT REPORT</p><h2>異常報告</h2></div>
+        <span class="status ng">写真・内容を記録</span>
+      </div>
+      <form id="reportForm">
+        <label for="reportTitle">異常のタイトル</label>
+        <input id="reportTitle" type="text" maxlength="60" placeholder="例：冷蔵庫から異音がする" required>
+        <div class="form-grid">
+          <div>
+            <label for="reportCategory">分類</label>
+            <select id="reportCategory">
+              <option value="清掃">清掃</option>
+              <option value="設備">設備</option>
+              <option value="その他">その他</option>
+            </select>
+          </div>
+          <div>
+            <label for="reportUrgency">緊急度</label>
+            <select id="reportUrgency">
+              <option value="通常">通常</option>
+              <option value="要確認">要確認</option>
+              <option value="緊急">緊急</option>
+            </select>
+          </div>
+        </div>
+        <label for="reportDescription">状況・対応メモ</label>
+        <textarea id="reportDescription" rows="3" maxlength="1000" placeholder="発生場所、状況、すでに行った対応など"></textarea>
+        <label for="reportPhoto">写真（任意）</label>
+        <input id="reportPhoto" class="photo-input" type="file" accept="image/*" capture="environment">
+        <p class="hint">写真は端末内に保存されます。画像は保存容量を抑えるため縮小します。</p>
+        <div id="photoPreview" class="photo-preview" hidden>
+          <img id="photoPreviewImage" alt="異常報告の写真プレビュー">
+          <button type="button" class="text-button" id="removePhotoBtn">写真を取り消す</button>
+        </div>
+        <button class="primary-btn" type="submit">異常報告を保存</button>
+      </form>
+      <div class="report-history-head"><strong>報告履歴</strong><span class="hint">この端末に保存された報告</span></div>
+      <div id="reportList" class="report-list"><p class="empty">まだ異常報告はありません。</p></div>
+    </section>
+
     <section class="panel history-panel">
       <div class="section-head compact"><div><p class="eyebrow">RECORDS</p><h2>最近の点検履歴</h2></div></div>
       <div id="historyList" class="history-list"><p class="empty">まだ点検履歴はありません。</p></div>
