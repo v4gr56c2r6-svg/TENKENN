@@ -20,3 +20,12 @@ Firebase準備：
 公開前テスト：
 テストスタッフを追加してusers/{UID}を作成し、別ブラウザ/端末でログイン。点検更新と異常報告がリアルタイム共有されることを確認。
 users文書はクライアントから書き換え不可。管理者のアカウント追加・権限変更はFirebase Consoleで行います。
+
+
+スタッフIDログインへの変更：
+- ログイン画面にはスタッフIDを入力します（3〜40文字、半角英数字・ピリオド・ハイフン・アンダースコア）。
+- 内部的に {staffId}@tenken-pro.firebaseapp.com をFirebase Authenticationのメールアドレスとして使います。
+- Firebase Authenticationでアカウントを作成するときは、例として manager001@tenken-pro.firebaseapp.com を登録してください。
+- 作成後のUIDで Firestore users/{UID} を作成し、displayName (string)、role (string)、active (boolean) を登録してください。
+- 既存の管理者メールアカウントは削除しないでください。IDログイン用アカウントは別UIDになります。
+- この方式では仮想メールアドレスにパスワード再設定メールを送れません。パスワード再発行は管理者がFirebase Consoleで行います。
